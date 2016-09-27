@@ -1,0 +1,24 @@
+---
+- name: MONA | Install mysql plugin python libs
+  pip:
+    name: '{{ item.name }}'
+    version: '{{ item.version | default(omit) }}'
+    extra_args: '{{ item.args | default(omit) }}'
+    virtualenv_command: virtualenv
+    virtualenv: /opt/monasca-agent
+  with_items:
+    - name: python-neutronclient
+  notify:
+    - restart monasca-agent
+
+- name: Setup Monasca agent neutron plugin
+  command: bin/monasca-setup -u {{ mon_agent_admin }} -p {{ mon_agent_pass }}
+    -s {{ mon_agent_service }} --project_name {{ mon_agent_project }}
+    --keystone_url {{ mon_agent_keystone_url }} --monasca_url {{ mon_agent_api_url }}
+    --config_dir {{ agent_conf_dir }} --log_dir {{ agent_log_dir }}
+    --detection_plugins neutron --detection_args 'service_api_url=http://localhost:{{ openstack_neutron_ha_port }} search_pattern=.*v2.0.*'
+  args:
+    chdir: /opt/monasca-agent
+#    creates: '{{ agent_plugin_conf_dir }}/neutron.yaml'
+  notify:
+    - restart monasca-agent

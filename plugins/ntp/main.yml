@@ -1,0 +1,11 @@
+---
+
+- name: MONA | Create ntp plugin configuration file
+  template:
+   dest: '{{ agent_plugin_conf_dir }}/ntp.yaml'
+   owner: '{{ monasca_agent_user }}'
+   group: '{{ monasca_group }}'
+   mode: 0640
+   src: plugins/ntp/ntp.yaml.j2
+  notify:
+    - restart monasca-agent

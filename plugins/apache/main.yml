@@ -1,0 +1,11 @@
+---
+
+- name: MONA | Create apache plugin configuration file
+  template:
+   dest: '{{ agent_plugin_conf_dir }}/apache.yaml'
+   owner: '{{ monasca_agent_user }}'
+   group: '{{ monasca_group }}'
+   mode: 0640
+   src: plugins/apache/apache.yaml.j2
+  notify:
+    - restart monasca-agent

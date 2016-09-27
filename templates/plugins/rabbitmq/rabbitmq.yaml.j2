@@ -1,0 +1,9 @@
+init_config:
+
+instances:
+  - exchanges: [nova, ceilometer, glance, keystone, neutron, heat]
+    nodes: [{{ openstack_rabbitmq_hosts }}]
+    queues: [conductor]
+    rabbitmq_api_url: http://localhost:15672/api
+    rabbitmq_user: {{ rabbitmq_ui_user }}
+    rabbitmq_pass: {{ rabbitmq_ui_user_password }}

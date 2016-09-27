@@ -1,0 +1,10 @@
+---
+- name: MONA | Create zookeeper plugin configuration file
+  template:
+   dest: '{{ agent_plugin_conf_dir }}/zk.yaml'
+   owner: '{{ monasca_agent_user }}'
+   group: '{{ monasca_group }}'
+   mode: 0640
+   src: plugins/zookeeper/zk.yaml.j2
+  notify:
+    - restart monasca-agent

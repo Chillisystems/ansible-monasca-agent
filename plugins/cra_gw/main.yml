@@ -1,0 +1,30 @@
+---
+
+- name: MONA | Clone monasca-plugins repository
+  git:
+    repo: '{{ agent_custom_plugin_repo_url }}'
+    dest: '{{ agent_install_dir }}/cra'
+    update: yes
+    force: yes
+
+- name: MONA | Deploy plugin files
+  file:
+     src: '{{ agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
+     dest: '{{ agent_custom_plugin_dir }}/{{ item }}'
+     state: link
+     force: no
+  with_items:
+    - gw.py
+  notify:
+    - restart monasca-agent
+
+- name: MONA | Create plugin config file
+  template:
+   dest: '{{ agent_plugin_conf_dir }}/gw.yaml'
+   owner: '{{ monasca_agent_user }}'
+   group: '{{ monasca_group }}'
+   mode: 0640
+   src: plugins/cra_gw/gw.yaml.j2
+  notify:
+    - restart monasca-agent
+

@@ -1,0 +1,35 @@
+---
+
+#
+# XXX: Detect if we should install mariadbclient/mysqlclient libs
+#
+- name: MONA | Install mysql plugin dependiences
+  apt:
+    name: '{{ item }}'
+    state: present
+    update_cache: yes
+    force: yes
+  with_items:
+    - libmariadbclient-dev
+
+- name: MONA | Install mysql plugin python libs
+  pip:
+    name: '{{ item.name }}'
+    version: '{{ item.version | default(omit) }}'
+    extra_args: '{{ item.args | default(omit) }}'
+    virtualenv_command: virtualenv
+    virtualenv: /opt/monasca-agent
+  with_items:
+    - name: MySQL-python
+  notify:
+    - restart monasca-agent
+
+- name: MONA | Create mysql plugin configuration file
+  template:
+   dest: '{{ agent_plugin_conf_dir }}/mysql.yaml'
+   owner: '{{ monasca_agent_user }}'
+   group: '{{ monasca_group }}'
+   mode: 0640
+   src: plugins/mysql/mysql.yaml.j2
+  notify:
+    - restart monasca-agent

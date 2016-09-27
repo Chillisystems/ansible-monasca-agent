@@ -1,0 +1,7 @@
+---
+# ©Copyright 2015 Hewlett-Packard Development Company, L.P.
+
+- include: install.yml
+- include: configure.yml
+- include: plugins.yml
+- include: start.yml

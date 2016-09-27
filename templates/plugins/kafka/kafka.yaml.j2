@@ -1,0 +1,10 @@
+init_config:
+
+instances:
+    - consumer_groups:
+        '1_alarm-state-transitions':
+            'alarm-state-transitions': ['3', '2', '1', '0']
+        '1_metrics':
+            'metrics': &id001 ['3', '2', '1', '0']
+  kafka_connect_str: localhost:9092
+  zk_connect_str: localhost:2181

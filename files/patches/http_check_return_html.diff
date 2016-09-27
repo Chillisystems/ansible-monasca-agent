@@ -1,0 +1,16 @@
+#
+# After failed patter match returning content of html request can break
+# monasca-persister/influxdb. This might be unreported bug as it behaves
+# in a same way in HEAD
+#
+--- a/collector/checks_d/http_check.py
++++ b/collector/checks_d/http_check.py
+@@ -170,7 +170,7 @@
+                 self.gauge('http_status',
+                            1,
+                            dimensions=dimensions,
+-                           value_meta={'error': 'Pattern match failed! "{0}"'.format(pattern)})
++                           value_meta={'error': error_string[:2048]})
+                 return services_checks.Status.DOWN, error_string
+
+         success_string = '{0} is UP'.format(addr)
