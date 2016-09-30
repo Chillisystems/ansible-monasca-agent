@@ -1,0 +1,9 @@
+init_config:
+
+instances:
+  - varnishstat: /usr/bin/varnishstat
+    name: {{ monasca_plugin_varnish_name }}
+    dimensions:
+    {% for k, v in monasca_plugin_varnish_dimensions.iteritems() %}
+      {{ k }}: {{ v }}
+    {% endfor %}

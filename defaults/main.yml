@@ -32,3 +32,17 @@ agent_custom_plugin_repo_dir: '{{ agent_install_dir }}/cra'
 agent_custom_plugin_repo_url: http://bitbucket.chillisys.com/cracz/cra-monasca-plugins.git
 
 agent_system_detection_args: 'ignore_filesystem_types=cgroup,configfs,debugfs,devpts,devtmpfs,fusectl,hugetlbfs,proc,pstore,rpc_pipefs,securityfs,sysfs,tmpfs,udevfs,iso9660,tracefs'
+
+monasca_plugin_haproxy_username: username
+monasca_plugin_haproxy_password: password
+
+monasca_plugin_http_check_instances: []
+
+monasca_plugin_nginx_instances: []
+
+monasca_plugin_rabbitmq_hosts: []
+monasca_plugin_rabbitmq_ui_user: username
+monasca_plugin_rabbitmq_ui_password: password
+
+monasca_plugin_varnish_name: varnish
+monasca_plugin_varnish_dimensions: []

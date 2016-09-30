@@ -1,0 +1,19 @@
+---
+- name: Find out if there is additional task file to include
+  stat:
+    path: "plugins/{{ plugin }}.yml"
+  register: include_file_result
+
+- name: Install plugin dependencies if needed
+  include: 'plugins/{{ plugin }}.yml'
+  when: include_file_result.stat.exists
+
+- name: Create plugin configuration file
+  template:
+   dest: '{{ agent_plugin_conf_dir }}/{{ plugin }}.yaml'
+   owner: '{{ monasca_agent_user }}'
+   group: '{{ monasca_group }}'
+   mode: 0640
+   src: 'plugins/{{ plugin }}/{{ plugin }}.yaml.j2'
+  notify:
+    - restart monasca-agent

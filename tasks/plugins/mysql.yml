@@ -23,13 +23,3 @@
     - name: MySQL-python
   notify:
     - restart monasca-agent
-
-- name: MONA | Create mysql plugin configuration file
-  template:
-   dest: '{{ agent_plugin_conf_dir }}/mysql.yaml'
-   owner: '{{ monasca_agent_user }}'
-   group: '{{ monasca_group }}'
-   mode: 0640
-   src: plugins/mysql/mysql.yaml.j2
-  notify:
-    - restart monasca-agent

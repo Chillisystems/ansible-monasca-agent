@@ -1,9 +1,9 @@
 init_config:
 
 instances:
-  - exchanges: [nova, ceilometer, glance, keystone, neutron, heat]
-    nodes: [{{ openstack_rabbitmq_hosts }}]
+  - exchanges: [nova, glance, keystone, neutron, heat]
+    nodes: [{{ monasca_plugin_rabbitmq_hosts.join(',') }}]
     queues: [conductor]
     rabbitmq_api_url: http://localhost:15672/api
-    rabbitmq_user: {{ rabbitmq_ui_user }}
-    rabbitmq_pass: {{ rabbitmq_ui_user_password }}
+    rabbitmq_user: {{ monasca_plugin_rabbitmq_ui_user }}
+    rabbitmq_pass: {{ monasca_plugin_rabbitmq_ui_password }}
