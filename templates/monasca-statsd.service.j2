@@ -1,0 +1,17 @@
+[Unit]
+Description=Monasca statsd
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Environment="http_proxy=''"
+Environment="https_proxy=''"
+Environment="HTTP_PROXY=''"
+Environment="HTTPS_PROXY=''"
+Restart=on-failure
+User=root
+Group={{ monasca_group }}
+ExecStart={{ agent_install_dir }}/bin/monasca-statsd
+
+[Install]
+WantedBy=multi-user.target

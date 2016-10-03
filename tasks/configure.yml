@@ -14,17 +14,17 @@
 
 - name: create upstart script from template
   template:
-    dest: '/etc/init/{{ item }}'
+    dest: '/etc/systemd/system/{{ item }}.service'
     owner: root
     group: root
     mode: 0744
-    src: '{{ item }}.j2'
+    src: '{{ item }}.service.j2'
   notify:
     - restart monasca-agent
   with_items:
-    - monasca-collector.conf
-    - monasca-statsd.conf
-    - monasca-forwarder.conf
+    - monasca-collector
+    - monasca-statsd
+    - monasca-forwarder
 
 - name: create placeholder script for monasca-agent
   copy:
@@ -57,3 +57,8 @@
     state: stopped
     enabled: no
   ignore_errors: yes
+
+- name: Deploy agent config
+  template:
+    src: agent.yaml.j2
+    dest: /etc/monasca/agent/agent.yaml
