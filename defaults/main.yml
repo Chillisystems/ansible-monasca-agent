@@ -33,8 +33,8 @@ agent_custom_plugin_repo_url: http://bitbucket.chillisys.com/cracz/cra-monasca-p
 
 agent_system_detection_args: 'ignore_filesystem_types=cgroup,configfs,debugfs,devpts,devtmpfs,fusectl,hugetlbfs,proc,pstore,rpc_pipefs,securityfs,sysfs,tmpfs,udevfs,iso9660,tracefs'
 
-monasca_plugin_haproxy_username: username
-monasca_plugin_haproxy_password: password
+monasca_plugin_haproxy_username: admin
+monasca_plugin_haproxy_password: NqXgKWQ9f9Et
 
 monasca_plugin_http_check_instances: []
 
