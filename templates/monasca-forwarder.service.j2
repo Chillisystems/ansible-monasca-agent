@@ -1,7 +1,7 @@
 [Unit]
 Description=Monasca forwarder
 Requires=network-online.target
-After=network-online.target
+After=network-online.target monasca-collector
 
 [Service]
 Environment="http_proxy=''"
@@ -11,7 +11,7 @@ Environment="HTTPS_PROXY=''"
 Restart=on-failure
 User=root
 Group={{ monasca_group }}
-ExecStart={{ agent_install_dir }}/bin/monasca-collector foreground
+ExecStart={{ agent_install_dir }}/bin/monasca-forwarder
 
 [Install]
 WantedBy=multi-user.target

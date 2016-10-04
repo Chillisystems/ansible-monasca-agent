@@ -11,7 +11,7 @@ Environment="HTTPS_PROXY=''"
 Restart=on-failure
 User=root
 Group={{ monasca_group }}
-ExecStart={{ agent_install_dir }}/bin/monasca-forwarder
+ExecStart={{ agent_install_dir }}/bin/monasca-collector foreground
 
 [Install]
 WantedBy=multi-user.target
