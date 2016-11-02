@@ -7,12 +7,12 @@ Api:
   max_buffer_size: 1000
   password: {{ mon_agent_pass }}
   project_domain_id: null
-  project_domain_name: null
+  project_domain_name: {{ mon_agent_project_domain_name }}
   project_id: null
   project_name: {{ mon_agent_project }}
   url: {{ mon_agent_api_url }}
   user_domain_id: null
-  user_domain_name: null
+  user_domain_name: {{ mon_agent_user_domain_name }}
   username: {{ mon_agent_admin }}
 Logging:
   collector_log_file: /var/log/monasca/agent/collector.log

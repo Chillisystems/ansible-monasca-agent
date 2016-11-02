@@ -13,6 +13,8 @@ mon_agent_project: '{{ openstack_monasca_project }}'
 mon_agent_service: '{{ openstack_monasca_service }}'
 mon_agent_keystone_url: '{{ openstack_identity_admin_url }}/v3'
 mon_agent_api_url: '{{ openstack_monasca_api_url }}'
+mon_agent_project_domain_name: default
+mon_agent_user_domain_name: default
 
 monasca_log_level: WARN
 
