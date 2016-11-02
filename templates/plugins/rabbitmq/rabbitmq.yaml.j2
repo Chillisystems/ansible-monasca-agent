@@ -2,7 +2,7 @@ init_config:
 
 instances:
   - exchanges: [nova, glance, keystone, neutron, heat]
-    nodes: [{{ monasca_plugin_rabbitmq_hosts.join(',') }}]
+    nodes: [{{ monasca_plugin_rabbitmq_hosts | join(',') }}]
     queues: [conductor]
     rabbitmq_api_url: http://localhost:15672/api
     rabbitmq_user: {{ monasca_plugin_rabbitmq_ui_user }}
