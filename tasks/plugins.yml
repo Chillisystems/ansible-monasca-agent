@@ -30,7 +30,7 @@
 
     - name: Create sudoers
       template:
-        src: plugins/cra_libvirt/sudoers.d.j2
+        src: plugins/libvirt/sudoers.d.j2
         dest: "/etc/sudoers.d/{{ monasca_agent_libvirt_user }}"
         mode: 0440
         owner: root
