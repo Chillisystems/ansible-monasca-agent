@@ -49,7 +49,7 @@
 
 #
 # TODO: this should be checked after influxdb/agent update
-- name: UI - Patch monasca-ui with next-page fix
+- name: Patch monasca agent to not return html code to influxdb
   patch:
     strip: 1
     src: patches/http_check_return_html.diff

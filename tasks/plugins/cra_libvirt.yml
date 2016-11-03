@@ -1,0 +1,34 @@
+---
+- name: Clone monasca-plugins repository
+  git:
+    repo: '{{ agent_custom_plugin_repo_url }}'
+    dest: '{{ agent_install_dir }}/cra'
+    update: yes
+    force: yes
+
+- name: Install paramiko dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    force: yes
+  with_items:
+    - libffi-dev
+    - libssl-dev
+
+- name: Install cra_libvirt plugin paramiko dependency
+  pip:
+    name: paramiko
+    virtualenv_command: virtualenv
+    virtualenv: '{{ agent_install_dir }}'
+
+- name: Deploy plugin files
+  file:
+     src: '{{ agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
+     dest: '{{ agent_custom_plugin_dir }}/cra_{{ item }}'
+     state: link
+     force: no
+  with_items:
+    - libvirt.py
+  notify:
+    - restart monasca-agent
+
