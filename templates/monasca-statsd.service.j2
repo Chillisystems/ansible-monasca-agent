@@ -4,10 +4,7 @@ Requires=network-online.target
 After=network-online.target
 
 [Service]
-Environment="http_proxy=''"
-Environment="https_proxy=''"
-Environment="HTTP_PROXY=''"
-Environment="HTTPS_PROXY=''"
+Type=simple
 Restart=on-failure
 User=root
 Group={{ monasca_group }}
