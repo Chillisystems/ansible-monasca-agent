@@ -19,7 +19,7 @@
     - build-essential
     - python-virtualenv
     - pkg-config
-    - libz-dev
+    - zlib1g-dev
     - libxml2
     - libxml2-dev
     - libxslt1.1
