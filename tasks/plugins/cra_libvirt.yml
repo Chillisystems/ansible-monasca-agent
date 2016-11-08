@@ -6,7 +6,7 @@
     update: yes
     force: yes
 
-- name: Install paramiko dependencies
+- name: Install apt dependencies
   apt:
     name: "{{ item }}"
     state: present
@@ -17,9 +17,13 @@
 
 - name: Install cra_libvirt plugin paramiko dependency
   pip:
-    name: paramiko
+    name: "{{ item }}"
     virtualenv_command: virtualenv
     virtualenv: '{{ agent_install_dir }}'
+  with_items:
+    - paramiko
+    - shade
+    - libvirt-python
 
 - name: Deploy plugin files
   file:
