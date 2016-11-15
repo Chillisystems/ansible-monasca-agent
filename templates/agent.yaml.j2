@@ -24,7 +24,7 @@ Main:
   collector_restart_interval: 24
   dimensions:
     service: monitoring
-  hostname: lab-node1
+  hostname: {{ inventory_hostname }}
   sub_collection_warn: 5
 Statsd:
   monasca_statsd_port: 8125
