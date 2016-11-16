@@ -4,7 +4,7 @@ instances:
 {% for instance in monasca_plugin_nginx_instances %}
 - nginx_status_url: {{ instance['nginx_status_url'] }}
   dimensions:
-  {% for k, v in instance['dimensions'].iteritems() %}
+{% for k, v in instance['dimensions'].iteritems() %}
     {{ k }}: {{ v }}
-  {% endfor %}
+{% endfor %}
 {% endfor %}
