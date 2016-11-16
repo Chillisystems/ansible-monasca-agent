@@ -30,11 +30,11 @@
 - name: Deploy plugin files
   file:
      src: '{{ agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
-     dest: '{{ agent_custom_plugin_dir }}/cra_{{ item }}'
+     dest: '{{ agent_custom_plugin_dir }}/{{ item }}'
      state: link
      force: no
   with_items:
-    - libvirt.py
+    - cra_libvirt.py
   notify:
     - restart monasca-agent
 
