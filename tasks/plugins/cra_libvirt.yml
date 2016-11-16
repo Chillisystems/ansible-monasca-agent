@@ -15,6 +15,7 @@
   with_items:
     - libffi-dev
     - libssl-dev
+    - libvirt-dev
 
 - name: Install cra_libvirt plugin paramiko dependency
   pip:
