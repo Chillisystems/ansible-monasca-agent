@@ -27,6 +27,14 @@
     - shade
     - libvirt-python
 
+- name: Apply shade all-tenant patch
+  patch:
+    src: patches/shade-all-tenant.patch
+    dest: /opt/monasca-agent/lib/python2.7/site-packages/shade/openstackcloud.py
+    strip: 1
+
+
+
 - name: Deploy plugin files
   file:
      src: '{{ agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
