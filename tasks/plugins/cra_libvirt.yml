@@ -30,7 +30,7 @@
 # TODO: Remove after merge is done @prema
 - name: Install shade from our github fork with list_all_servers fix
   pip:
-   name: "git+https://github.com/openstack/monasca-ui.git@list-all-servers-fix"
+   name: "git+https://github.com/Chillisystems/shade@list-all-servers-fix"
    state: present
    virtualenv: '{{ agent_install_dir | default(omit) }}'
 
