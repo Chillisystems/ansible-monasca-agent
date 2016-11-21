@@ -24,16 +24,15 @@
     virtualenv: '{{ agent_install_dir }}'
   with_items:
     - paramiko
-    - shade
     - libvirt-python
 
-- name: Apply shade all-tenant patch
-  patch:
-    src: patches/shade-all-tenant.patch
-    dest: /opt/monasca-agent/lib/python2.7/site-packages/shade/openstackcloud.py
-    strip: 1
-
-
+#
+# TODO: Remove after merge is done @prema
+- name: Install shade from our github fork with list_all_servers fix
+  pip:
+   name: "git+https://github.com/openstack/monasca-ui.git@list-all-servers-fix"
+   state: present
+   virtualenv: '{{ agent_install_dir | default(omit) }}'
 
 - name: Deploy plugin files
   file:
