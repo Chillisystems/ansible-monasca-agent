@@ -35,7 +35,7 @@
     virtualenv_command: virtualenv
     virtualenv: '{{ agent_install_dir }}'
   with_items:
-    - name: "git+https://github.com/openstack/monasca-agent.git@{{ monasca_agent_revision | default('master') }}"
+    - name: "git+https://github.com/openstack/monasca-agent.git@{{ monasca_agent_revision | default('master') }}#egg=monasca-agent"
     - name: psutil
     - name: lxml
 
