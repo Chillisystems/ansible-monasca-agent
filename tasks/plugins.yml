@@ -6,38 +6,4 @@
   loop_control:
      loop_var: plugin
 
-- block:
-    - name: Create user for cra_libvirt plugin
-      user:
-        name: "{{ monasca_agent_libvirt_user }}"
-        password: "{{ monasca_agent_libvirt_user_password_encrypted }}"
-        state: present
-
-    - name: Create sudoers.d directory
-      file:
-        path: /etc/sudoers.d
-        owner: root
-        group: root
-        mode: 0755
-        state: directory
-
-    - name: Set includedir in sudoers
-      lineinfile:
-        dest: /etc/sudoers
-        line: "#includedir /etc/sudoers.d"
-        state: present
-        validate: "/usr/sbin/visudo -cf %s"
-
-    - name: Create sudoers
-      template:
-        src: plugins/libvirt/sudoers.d.j2
-        dest: "/etc/sudoers.d/{{ monasca_agent_libvirt_user }}"
-        mode: 0440
-        owner: root
-        group: root
-        validate: "/usr/sbin/visudo -cf %s"
-
-  when: groups['neutron-network'] is defined and
-        inventory_hostname in groups['neutron-network']
-
 - meta: flush_handlers
