@@ -48,3 +48,5 @@ monasca_plugin_rabbitmq_ui_password: password
 
 monasca_plugin_varnish_name: varnish
 monasca_plugin_varnish_dimensions: []
+
+monasca_plugin_ntp_server: ntp.cra.cz
