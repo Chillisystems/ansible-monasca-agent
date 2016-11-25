@@ -14,17 +14,18 @@ Api:
   user_domain_id: null
   user_domain_name: {{ mon_agent_user_domain_name }}
   username: {{ mon_agent_admin }}
-Logging:
-  collector_log_file: /var/log/monasca/agent/collector.log
-  forwarder_log_file: /var/log/monasca/agent/forwarder.log
-  log_level: INFO
-  statsd_log_file: /var/log/monasca/agent/statsd.log
 Main:
   check_freq: 30
   collector_restart_interval: 24
+  num_collector_threads: 5
   dimensions:
     service: monitoring
   hostname: {{ inventory_hostname }}
   sub_collection_warn: 5
 Statsd:
   monasca_statsd_port: 8125
+Logging:
+  collector_log_file: /var/log/monasca/agent/collector.log
+  forwarder_log_file: /var/log/monasca/agent/forwarder.log
+  log_level: INFO
+  statsd_log_file: /var/log/monasca/agent/statsd.log
