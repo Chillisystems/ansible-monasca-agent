@@ -38,8 +38,11 @@ agent_system_detection_args: 'ignore_filesystem_types=cgroup,configfs,debugfs,de
 monasca_plugin_haproxy_username: admin
 monasca_plugin_haproxy_password: NqXgKWQ9f9Et
 
-monasca_plugin_http_check_instances: []
+#
+# Default entries for plugin configuration.
 
+monasca_plugin_http_check_instances: []
+monasca_plugin_process_instances: []
 monasca_plugin_nginx_instances: []
 
 monasca_plugin_rabbitmq_hosts: []
