@@ -9,6 +9,9 @@ instances:
   exact_match: {{ instance['exact_match'] }}
   name: {{ instance['name'] }}
   search_string:
-    - {{ instance['search_string'] }}
+   {% for k in instance['search_string'] %}
+    - {{ k }}
+
+   {% endfor %}
 
 {% endfor %}
