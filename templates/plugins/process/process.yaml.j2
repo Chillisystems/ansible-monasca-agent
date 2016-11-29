@@ -7,8 +7,9 @@ instances:
       {{ k }}: {{ v }}
 {% endfor %}
 
-  exact_match: {{ instance['exact_match'] }}
+  exact_match: {{ instance['exact_match'] | default(false) }}
   name: {{ instance['name'] }}
+  detailed: {{ instance['detailed'] | default(false) }}
   search_string:
 {% for k in instance['search_string'] %}
     - {{ k }}
