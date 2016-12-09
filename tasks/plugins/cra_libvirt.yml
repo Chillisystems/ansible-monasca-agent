@@ -1,0 +1,46 @@
+---
+- name: Clone monasca-plugins repository
+  git:
+    repo: '{{ agent_custom_plugin_repo_url }}'
+    dest: '{{ agent_install_dir }}/cra'
+    version: master
+    update: yes
+    force: yes
+
+- name: Install apt dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    force: yes
+  with_items:
+    - libffi-dev
+    - libssl-dev
+    - libvirt-dev
+
+- name: Install cra_libvirt plugin paramiko dependency
+  pip:
+    name: "{{ item }}"
+    virtualenv_command: virtualenv
+    virtualenv: '{{ agent_install_dir }}'
+  with_items:
+    - paramiko
+    - libvirt-python
+
+#
+# TODO: Remove after merge is done @prema
+- name: Install shade from our github fork with list_all_servers fix
+  pip:
+   name: "git+https://github.com/Chillisystems/shade@list-all-servers-fix#egg=shade"
+   state: present
+   virtualenv: '{{ agent_install_dir | default(omit) }}'
+
+- name: Deploy plugin files
+  file:
+     src: '{{ agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
+     dest: '{{ agent_custom_plugin_dir }}/{{ item }}'
+     state: link
+     force: no
+  with_items:
+    - cra_libvirt.py
+  notify:
+    - restart monasca-agent
