@@ -1,6 +1,20 @@
 ---
 init_config: null
 instances:
-- apache_status_url: http://localhost/server-status?auto
-  built_by: Apache
-  name: http://localhost/server-status?auto
+{% for instance in monasca_plugin_apache_instances %}
+{% if instance.url is defined %}
+    - apache_status_url: {{ instance.url }}
+      name: {{ instance.url | regex_replace('^(.*://[a-z.-:]+)/.*$', '\\1') }}
+{% else %}
+    - apache_status_url: {{ instance.scheme | default('http') }}://{{ instance.host | default('localhost') }}:{{  instance.port | default('80') }}{{ instance.path | default('/server-status?auto') }}
+      name: {{ instance.scheme | default('http') }}://{{ instance.host | default('localhost') }}:{{  instance.port | default('80') }}
+{% endif %}
+{% if instance.dimensions is defined %}
+      dimensions:
+{% for k, v in instance['dimensions'].iteritems() %}
+        {{ k }}: {{ v }}
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+
