@@ -21,5 +21,6 @@
     virtualenv: /opt/monasca-agent
   with_items:
     - name: MySQL-python
+    - name: pymysql
   notify:
     - restart monasca-agent
