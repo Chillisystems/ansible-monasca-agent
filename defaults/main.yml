@@ -53,3 +53,7 @@ monasca_plugin_varnish_name: varnish
 monasca_plugin_varnish_dimensions: []
 
 monasca_plugin_ntp_server: 0.europe.pool.ntp.org
+
+monasca_plugin_mcache_instances:
+  - uri: localhost
+    port: 11211
