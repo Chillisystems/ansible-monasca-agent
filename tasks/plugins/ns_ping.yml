@@ -7,6 +7,14 @@
     update: yes
     force: yes
 
+- name: Install apt dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    force: yes
+  with_items:
+    - fping
+
 - name: MONA | Deploy plugin files
   file:
      src: '{{ agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
