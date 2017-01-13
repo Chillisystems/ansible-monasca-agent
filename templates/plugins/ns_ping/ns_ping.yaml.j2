@@ -5,13 +5,4 @@ init_config:
   identity_uri: '{{ openstack_identity_admin_url }}/v2.0'
   region_name: '{{ openstack_identity_region }}'
   cache_dir: /dev/shm
-  metadata:
-    - scale_group
-  nova_refresh: 14400
-  vm_probation: 300
-  vm_cpu_check_enable: true
-  vm_disks_check_enable: true
-  vm_network_check_enable: true
-  vm_ping_check_enable: false
-  vm_extended_disks_check_enable: true
 instances: []

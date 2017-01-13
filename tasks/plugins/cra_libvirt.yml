@@ -23,16 +23,7 @@
     virtualenv_command: virtualenv
     virtualenv: '{{ agent_install_dir }}'
   with_items:
-    - paramiko
     - libvirt-python
-
-#
-# TODO: Remove after merge is done @prema
-- name: Install shade from our github fork with list_all_servers fix
-  pip:
-   name: "git+https://github.com/Chillisystems/shade@list-all-servers-fix#egg=shade"
-   state: present
-   virtualenv: '{{ agent_install_dir | default(omit) }}'
 
 - name: Deploy plugin files
   file:
