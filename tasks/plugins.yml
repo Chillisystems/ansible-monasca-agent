@@ -9,8 +9,8 @@
 - block:
     - name: Create user for cra_libvirt plugin
       user:
-        name: "{{ monasca_agent_libvirt_user }}"
-        password: "{{ monasca_agent_libvirt_user_password_encrypted }}"
+        name: "{{ monasca_plugin_libvirt_user }}"
+        password: "{{ monasca_plugin_libvirt_user_password_encrypted }}"
         state: present
 
     - name: Create sudoers.d directory
@@ -31,7 +31,7 @@
     - name: Create sudoers
       template:
         src: plugins/libvirt/sudoers.d.j2
-        dest: "/etc/sudoers.d/{{ monasca_agent_libvirt_user }}"
+        dest: "/etc/sudoers.d/{{ monasca_plugin_libvirt_user }}"
         mode: 0440
         owner: root
         group: root

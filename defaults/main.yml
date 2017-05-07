@@ -1,50 +1,98 @@
 ---
-monasca_agent_user: mon-agent
-monasca_group: mon-agent
-
-# user used by libvirt plugin
-monasca_agent_libvirt_user: mon-libvirt
-monasca_agent_libvirt_user_password: monasca
-monasca_agent_libvirt_user_password_encrypted: $1$SomeSalt$33Exv/MRTuCnaCFS7l8Yo.
-
-mon_agent_admin: '{{ openstack_monasca_agent_admin }}'
-mon_agent_pass: '{{ openstack_identity_admin_password }}'
-mon_agent_project: '{{ openstack_monasca_project }}'
-mon_agent_service: '{{ openstack_monasca_service }}'
-mon_agent_keystone_url: '{{ openstack_identity_admin_url }}/v3'
-mon_agent_api_url: '{{ openstack_monasca_api_url }}'
-mon_agent_project_domain_name: default
-mon_agent_user_domain_name: default
-
 monasca_log_level: WARN
 
 monasca_log_dir: /var/log/monasca
 monasca_conf_dir: /etc/monasca
 
-agent_install_dir: /opt/monasca-agent
-agent_log_dir: "{{ monasca_log_dir }}/agent"
-agent_conf_dir: "{{ monasca_conf_dir }}/agent"
+monasca_agent_user: mon-agent
+monasca_group: mon-agent
 
-agent_plugin_conf_dir: "{{ agent_conf_dir }}/conf.d"
+###
+# Openstack monasca settings
+monasca_agent_admin: '{{ openstack_monasca_agent_admin }}'
+monasca_agent_pass: '{{ openstack_identity_admin_password }}'
+monasca_agent_project: '{{ openstack_monasca_project }}'
+monasca_agent_service: '{{ openstack_monasca_service }}'
+monasca_agent_keystone_url: '{{ openstack_identity_public_url }}'
+monasca_agent_api_url: '{{ openstack_monasca_api_url }}'
+monasca_agent_project_domain_name: default
+monasca_agent_user_domain_name: default
 
-agent_custom_plugin_dir: /usr/lib/monasca/agent/custom_checks.d
-agent_custom_conf_dir: /usr/lib/monasca/agent/conf.d
+###
+# Monasca agent paths
+monasca_agent_install_dir: /opt/monasca-agent
+monasca_agent_log_dir: "{{ monasca_log_dir }}/agent"
+monasca_agent_conf_dir: "{{ monasca_conf_dir }}/agent"
 
-agent_custom_plugin_repo_dir: '{{ agent_install_dir }}/cra'
-agent_custom_plugin_repo_url: http://bitbucket.chillisys.com/cracz/cra-monasca-plugins.git
+monasca_agent_plugin_conf_dir: "{{ monasca_agent_conf_dir }}/conf.d"
 
-agent_system_detection_args: 'ignore_filesystem_types=cgroup,configfs,debugfs,devpts,devtmpfs,fusectl,hugetlbfs,proc,pstore,rpc_pipefs,securityfs,sysfs,tmpfs,udevfs,iso9660,tracefs'
+monasca_agent_custom_plugin_dir: /usr/lib/monasca/agent/custom_checks.d
+monasca_agent_custom_conf_dir: /usr/lib/monasca/agent/conf.d
 
+###
+# Custom repository for modules
+monasca_agent_custom_plugin_repo_dir: "{{ monasca_agent_install_dir }}/cra"
+monasca_agent_custom_plugin_repo_url: http://bitbucket.chillisys.com/cracz/cra-monasca-plugins.git
+
+### ### ###
+# Custom plugins configuration
+monasca_agent_system_detection_args: "ignore_filesystem_types=cgroup,configfs,debugfs,devpts,devtmpfs,fusectl,hugetlbfs,proc,pstore,rpc_pipefs,securityfs,sysfs,tmpfs,udevfs,iso9660,tracefs"
+
+###
+# User used by libvirt plugin
+monasca_plugin_libvirt_user: mon-libvirt
+monasca_plugin_libvirt_user_password: monasca
+monasca_plugin_libvirt_user_password_encrypted: $1$SomeSalt$33Exv/MRTuCnaCFS7l8Yo.
+
+## Haproxy plugin
 monasca_plugin_haproxy_username: admin
 monasca_plugin_haproxy_password: NqXgKWQ9f9Et
 
+## HTTP check plugin
 monasca_plugin_http_check_instances: []
 
+## Nginx plugin
 monasca_plugin_nginx_instances: []
 
+## RabbitMQ plugin
 monasca_plugin_rabbitmq_hosts: []
 monasca_plugin_rabbitmq_ui_user: username
 monasca_plugin_rabbitmq_ui_password: password
 
+## Varnish plugin
 monasca_plugin_varnish_name: varnish
 monasca_plugin_varnish_dimensions: []
+
+## Mysql plugin
+monasca_plugin_mysql_host: localhost
+monasca_plugin_mysql_port: 3306
+monasca_plugin_mysql_user: '{{ galera_root_user }}'
+monasca_plugin_mysql_password: '{{ galera_root_password }}'
+
+## NTP plugin
+monasca_plugin_ntp_server: '{{ ntp_config_server.0 }}'
+
+## Zookeeper plugin
+monasca_plugin_zk_host: localhost
+monasca_plugin_zk_port: 2181
+
+## Kafka plugin
+monasca_plugin_kafka_connect: localhost:9092
+monasca_plugin_kafka_zk_connect: localhost:2181
+monasca_plugin_kafka_consumer_groups:
+    'alarm-state-transitions': ['3', '2', '1', '0']
+    'metrics': ['3', '2', '1', '0']
+
+## Apache plugin
+monasca_plugin_apache_url: http://localhost/server-status?auto
+
+## Process plugin
+monasca_plugin_process_checks:
+    - component: monasca-api-1
+      service: monitoring
+      search_string: monasca-api
+
+## CRA Plugins
+monasca_plugin_nova_user: nova
+monasca_plugin_nova_password: '{{ openstack_identity_nova_password }}'
+monasca_plugin_nova_project: service

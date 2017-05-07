@@ -1,6 +1,6 @@
 ---
 init_config: null
 instances:
-- apache_status_url: http://localhost/server-status?auto
+- apache_status_url: {{ monasca_plugin_apache_url }}
   built_by: Apache
-  name: http://localhost/server-status?auto
+  name: {{ monasca_plugin_apache_url }}

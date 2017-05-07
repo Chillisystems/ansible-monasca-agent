@@ -9,3 +9,6 @@
     - monasca-forwarder
     - monasca-statsd
     - monasca-collector
+
+- name: reload systemd
+  command: systemctl daemon-reload

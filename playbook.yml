@@ -1,0 +1,34 @@
+---
+- hosts: all
+  gather_facts: no
+  vars:
+    monasca_agent_admin: test
+    monasca_agent_pass: test_pass
+    monasca_agent_project: test_project
+    monasca_agent_service: test_service
+    monasca_agent_keystone_url: test_keystone_url
+    monasca_agent_api_url: test_monasca_url
+    monasca_agent_plugins:
+      - ntp
+      - apache
+      - http_check
+      - haproxy
+      - network
+      - cpu
+      - load
+      - disk
+      - memory
+      - process
+    monasca_plugin_ntp_server: 0.cz.pool.ntp.org
+  pre_tasks:
+    - name: Run apt-get update
+      changed_when: false
+      raw: apt-get update
+    - name: Install python2
+      changed_when: false
+      raw: apt-get -y install python-simplejson
+    - name: Gather facts
+      setup:
+        gather_subset: all
+  roles:
+    - role: ansible-monasca-agent

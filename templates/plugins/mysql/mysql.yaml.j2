@@ -1,8 +1,8 @@
 init_config: null
 instances:
-- built_by: MySQL
-  name: localhost
-  pass: {{ galera_root_password }}
-  port: 3306
-  server: localhost
-  user: {{ galera_root_user }}
+  - built_by: MySQL
+    name: {{ monasca_plugin_mysql_host }}
+    pass: {{ monasca_plugin_mysql_password }}
+    port: {{ monasca_plugin_mysql_port }}
+    server: {{ monasca_plugin_mysql_host }}
+    user: {{ monasca_plugin_mysql_user }}

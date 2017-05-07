@@ -10,7 +10,7 @@
 
 - name: Create plugin configuration file
   template:
-   dest: '{{ agent_plugin_conf_dir }}/{{ plugin }}.yaml'
+   dest: '{{ monasca_agent_plugin_conf_dir }}/{{ plugin }}.yaml'
    owner: '{{ monasca_agent_user }}'
    group: '{{ monasca_group }}'
    mode: 0640

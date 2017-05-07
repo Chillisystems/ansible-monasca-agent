@@ -1,12 +1,12 @@
 init_config:
-  admin_password: {{ openstack_identity_nova_password }}
-  admin_tenant_name: service
-  admin_user: nova
+  admin_password: {{ monasca_plugin_nova_password }}
+  admin_tenant_name: {{ monasca_plugin_nova_project }}
+  admin_user: {{ monasca_plugin_nova_user }}
   cache_dir: /dev/shm
   netserver_ip: {{ groups['neutron-network'][0] }}
-  netserver_user: {{ monasca_agent_libvirt_user }}
-  netserver_password: {{ monasca_agent_libvirt_user_password }}
-  identity_uri: {{ openstack_identity_admin_url }}/v2.0
+  netserver_user: {{ monasca_plugin_libvirt_user }}
+  netserver_password: {{ monasca_plugin_libvirt_user_password }}
+  identity_uri: {{ monasca_agent_keystone_url }}/v2.0
   metadata:
     - scale_group
   nova_refresh: 14400

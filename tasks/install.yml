@@ -32,7 +32,7 @@
    owner: root
    mode: 0775
   with_items:
-    - '{{ agent_install_dir }}'
+    - '{{ monasca_agent_install_dir }}'
 
 - name: Install monasca-agent packages
   pip:
@@ -40,7 +40,7 @@
     version: '{{ item.version | default(omit) }}'
     extra_args: '{{ item.args | default(omit) }}'
     virtualenv_command: virtualenv
-    virtualenv: '{{ agent_install_dir }}'
+    virtualenv: '{{ monasca_agent_install_dir }}'
   with_items:
     - name: monasca-agent
       version: 1.1.24
@@ -53,4 +53,4 @@
   patch:
     strip: 1
     src: patches/http_check_return_html.diff
-    basedir: '{{ agent_install_dir }}/lib/python2.7/site-packages/monasca_agent'
+    basedir: '{{ monasca_agent_install_dir }}/lib/python2.7/site-packages/monasca_agent'

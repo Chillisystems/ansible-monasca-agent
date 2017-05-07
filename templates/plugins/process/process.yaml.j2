@@ -1,0 +1,14 @@
+init_config: null
+
+instances:
+{% for process in monasca_plugin_process_checks %}
+  - built_by: ProcessCheck
+    name: {{ process.component }}
+    detailed: true
+    dimensions:
+      component: {{ process.component }}
+      service: {{ process.service }}
+    exact_match: false
+    search_string:
+      - {{ process.search_string }}
+{% endfor %}

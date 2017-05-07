@@ -20,21 +20,11 @@
     mode: 0744
     src: '{{ item }}.service.j2'
   notify:
-    - restart monasca-agent
+    - reload systemd
   with_items:
     - monasca-collector
     - monasca-statsd
     - monasca-forwarder
-
-- name: create placeholder script for monasca-agent
-  copy:
-    dest: /etc/init.d/monasca-agent
-    owner: root
-    group: root
-    mode: 0744
-    content: |
-      #!/bin/bash
-      exit 0
 
 - name: create monasca install directories
   file:
@@ -45,11 +35,23 @@
     mode: 0775
     recurse: no
   with_items:
-    - '{{ agent_log_dir }}'
-    - '{{ agent_conf_dir }}'
-    - '{{ agent_conf_dir }}/conf.d'
-    - '{{ agent_custom_plugin_dir }}'
-    - '{{ agent_custom_conf_dir }}'
+    - '{{ monasca_agent_log_dir }}'
+    - '{{ monasca_agent_conf_dir }}'
+    - '{{ monasca_agent_conf_dir }}/conf.d'
+    - '{{ monasca_agent_custom_plugin_dir }}'
+    - '{{ monasca_agent_custom_conf_dir }}'
+
+###
+# This is workaround around monasca-setup creating monasca-agent init script during every run.
+- name: create placeholder script for monasca-agent
+  copy:
+    dest: /etc/init.d/monasca-agent
+    owner: root
+    group: root
+    mode: 0744
+    content: |
+      #!/bin/bash
+      exit 0
 
 - name: Stop monasca-agent service
   service:
@@ -57,8 +59,12 @@
     state: stopped
     enabled: no
   ignore_errors: yes
+###
+
 
 - name: Deploy agent config
   template:
     src: agent.yaml.j2
     dest: /etc/monasca/agent/agent.yaml
+  notify:
+    - restart monasca-agent

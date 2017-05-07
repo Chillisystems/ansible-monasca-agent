@@ -3,17 +3,17 @@ Api:
   backlog_send_rate: 1000
   ca_file: null
   insecure: false
-  keystone_url: {{ mon_agent_keystone_url }}
+  keystone_url: {{ monasca_agent_keystone_url }}/v3
   max_buffer_size: 1000
-  password: {{ mon_agent_pass }}
+  password: {{ monasca_agent_pass }}
   project_domain_id: null
-  project_domain_name: {{ mon_agent_project_domain_name }}
+  project_domain_name: {{ monasca_agent_project_domain_name }}
   project_id: null
-  project_name: {{ mon_agent_project }}
-  url: {{ mon_agent_api_url }}
+  project_name: {{ monasca_agent_project }}
+  url: {{ monasca_agent_api_url }}
   user_domain_id: null
-  user_domain_name: {{ mon_agent_user_domain_name }}
-  username: {{ mon_agent_admin }}
+  user_domain_name: {{ monasca_agent_user_domain_name }}
+  username: {{ monasca_agent_admin }}
 Logging:
   collector_log_file: /var/log/monasca/agent/collector.log
   forwarder_log_file: /var/log/monasca/agent/forwarder.log

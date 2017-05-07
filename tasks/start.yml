@@ -2,7 +2,6 @@
 - name: Start and enable monasca-agent
   service:
     name: '{{ item }}'
-    state: started
     enabled: yes
   with_items:
     - monasca-forwarder

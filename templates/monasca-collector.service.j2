@@ -8,7 +8,7 @@ Type=simple
 Restart=on-failure
 User=root
 Group={{ monasca_group }}
-ExecStart={{ agent_install_dir }}/bin/monasca-collector foreground
+ExecStart={{ monasca_agent_install_dir }}/bin/monasca-collector foreground -v
 
 [Install]
 WantedBy=multi-user.target

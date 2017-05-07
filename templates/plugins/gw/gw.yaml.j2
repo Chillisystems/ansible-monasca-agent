@@ -1,9 +1,9 @@
 init_config:
-  admin_password: {{ openstack_identity_nova_password }}
+  admin_password: {{ monasca_plugin_nova_password }}
   admin_tenant_name: service
   admin_user: nova
   cache_dir: /dev/shm
-  identity_uri: http://{{ openstack_identity_endpoint_host }}:5000/v2.0
+  identity_uri: {{ monasca_agent_keystone_url }}/v2.0
   ping_check: /sbin/ip netns exec NAMESPACE /bin/ping -n -c1 -w1
 instances:
 - built_by: Prema

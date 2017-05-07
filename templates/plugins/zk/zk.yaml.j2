@@ -1,7 +1,7 @@
 init_config: null
 instances:
-- built_by: Zookeeper
-  host: localhost
-  name: localhost
-  port: 2181
-  timeout: 3
+  - built_by: Zookeeper
+    host: {{ monasca_plugin_zk_host }}
+    name: {{ monasca_plugin_zk_host }}
+    port: {{ monasca_plugin_zk_port }}
+    timeout: 3

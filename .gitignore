@@ -1,1 +1,6 @@
 .gitreview
+.vagrant
+.molecule
+.cache
+*.log
+*.pyc
