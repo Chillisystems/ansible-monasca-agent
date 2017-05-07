@@ -26,7 +26,7 @@ install:
 
 script:
   # Check the role/playbook's syntax.
-  - ansible-playbook --syntax-check tests/test.yml
+  - ansible-playbook --syntax-check playbook.yml
 
   # Run the role/playbook with ansible-playbook.
   - ansible-playbook -v --connection=local -D -b playbook.yml
