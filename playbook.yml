@@ -31,4 +31,4 @@
       setup:
         gather_subset: all
   roles:
-    - role: ansible-monasca-agent
+    - role: ../ansible-monasca-agent
