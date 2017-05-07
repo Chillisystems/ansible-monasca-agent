@@ -32,7 +32,7 @@ script:
   - ansible-playbook -v --connection=local -D -b playbook.yml
 
   - >
-    ansible-playbook -v --connection=local -D -b tests/test.yml
+    ansible-playbook -v --connection=local -D -b playbook.yml
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
