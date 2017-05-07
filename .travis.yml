@@ -29,10 +29,10 @@ script:
   - ansible-playbook --syntax-check playbook.yml
 
   # Run the role/playbook with ansible-playbook.
-  - ansible-playbook -v --connection=local -D -b playbook.yml
+  - ansible-playbook -v --connection=local -D -b -i 'localhost,' playbook.yml
 
   - >
-    ansible-playbook -v --connection=local -D -b playbook.yml
+    ansible-playbook -v --connection=local -D -b -i 'localhost,' playbook.yml
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
