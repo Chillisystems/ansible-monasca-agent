@@ -14,9 +14,9 @@
     update_cache: yes
     force: yes
   with_items:
+    - build-essential
     - python-pip
     - python-dev
-    - build-essential
     - python-virtualenv
     - pkg-config
     - zlib1g-dev
@@ -25,7 +25,7 @@
     - libxslt1.1
     - libxslt1-dev
 
-- name: create monasca-agent install directory
+- name: Create monasca-agent install directory
   file:
    path: '{{ item }}'
    state: directory
@@ -43,7 +43,7 @@
     virtualenv: '{{ monasca_agent_install_dir }}'
   with_items:
     - name: monasca-agent
-      version: 1.1.24
+      version: '{{ monasca_agent_version }}'
     - name: psutil
     - name: lxml
 

@@ -1,11 +1,21 @@
 ---
+
+
 monasca_log_level: WARN
 
 monasca_log_dir: /var/log/monasca
 monasca_conf_dir: /etc/monasca
 
+
+# Monasca Agent configuration
+
+monasca_agent_version: 2.0.0
+
 monasca_agent_user: mon-agent
 monasca_group: mon-agent
+
+# Enable service/unit deployment configuration
+monasca_agent_services_start: yes
 
 ###
 # Openstack monasca settings
@@ -68,6 +78,8 @@ monasca_plugin_mysql_host: localhost
 monasca_plugin_mysql_port: 3306
 monasca_plugin_mysql_user: '{{ galera_root_user }}'
 monasca_plugin_mysql_password: '{{ galera_root_password }}'
+monasca_plugin_mysql_deps:
+    - libmariadbclient-dev
 
 ## NTP plugin
 monasca_plugin_ntp_server: '{{ ntp_config_server.0 }}'

@@ -3,16 +3,16 @@
 #
 # XXX: Detect if we should install mariadbclient/mysqlclient libs
 #
-- name: MONA | Install mysql plugin dependiences
+- name: Install mysql plugin dependiences
   apt:
     name: '{{ item }}'
     state: present
     update_cache: yes
     force: yes
   with_items:
-    - libmariadbclient-dev
+    - '{{ monasca_plugin_mysql_deps }}'
 
-- name: MONA | Install mysql plugin python libs
+- name: Install mysql plugin python libs
   pip:
     name: '{{ item.name }}'
     version: '{{ item.version | default(omit) }}'

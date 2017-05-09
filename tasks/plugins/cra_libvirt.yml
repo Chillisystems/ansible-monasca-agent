@@ -8,7 +8,7 @@
 
 - name: Install paramiko dependencies
   apt:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: present
     force: yes
   with_items:

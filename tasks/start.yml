@@ -1,5 +1,5 @@
 ---
-- name: Start and enable monasca-agent
+- name: Start and enable monasca-agent services
   service:
     name: '{{ item }}'
     enabled: yes
@@ -7,3 +7,4 @@
     - monasca-forwarder
     - monasca-statsd
     - monasca-collector
+  when: monasca_agent_services_start

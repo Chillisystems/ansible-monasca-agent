@@ -1,7 +1,7 @@
 ---
 # ©Copyright 2015 Hewlett-Packard Development Company, L.P.
 
-- name: setup group
+- name: Setup group
   group:
     name: '{{ monasca_group }}'
     system: yes
@@ -12,7 +12,7 @@
     system: yes
     group: '{{ monasca_group }}'
 
-- name: create upstart script from template
+- name: Create init scripts from template
   template:
     dest: '/etc/systemd/system/{{ item }}.service'
     owner: root
@@ -26,7 +26,7 @@
     - monasca-statsd
     - monasca-forwarder
 
-- name: create monasca install directories
+- name: Create monasca install directories
   file:
     path: '{{ item }}'
     state: directory
@@ -43,7 +43,8 @@
 
 ###
 # This is workaround around monasca-setup creating monasca-agent init script during every run.
-- name: create placeholder script for monasca-agent
+# XXX: To be removed
+- name: Create placeholder script for monasca-agent
   copy:
     dest: /etc/init.d/monasca-agent
     owner: root

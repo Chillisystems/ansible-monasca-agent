@@ -5,10 +5,11 @@
     name: '{{ item }}'
     state: restarted
   with_items:
-#    - monasca-agent
     - monasca-forwarder
     - monasca-statsd
     - monasca-collector
+  when: monasca_agent_services_start
 
 - name: reload systemd
   command: systemctl daemon-reload
+  when: monasca_agent_services_start
