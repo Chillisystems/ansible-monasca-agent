@@ -1,15 +1,13 @@
 ---
 
-
-monasca_log_level: WARN
-
+# Generic Monasca Variables usually inherited from upper playbook
 monasca_log_dir: /var/log/monasca
 monasca_conf_dir: /etc/monasca
 
-
 # Monasca Agent configuration
-
 monasca_agent_version: 2.0.0
+
+monasca_agent_log_level: INFO
 
 monasca_agent_user: mon-agent
 monasca_group: mon-agent

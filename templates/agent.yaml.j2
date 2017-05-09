@@ -3,28 +3,28 @@ Api:
   backlog_send_rate: 1000
   ca_file: null
   insecure: false
-  keystone_url: {{ monasca_agent_keystone_url }}/v3
   max_buffer_size: 1000
+  keystone_url: {{ monasca_agent_keystone_url }}/v3
+  username: {{ monasca_agent_admin }}
   password: {{ monasca_agent_pass }}
   project_domain_id: null
   project_domain_name: {{ monasca_agent_project_domain_name }}
   project_id: null
   project_name: {{ monasca_agent_project }}
-  url: {{ monasca_agent_api_url }}
   user_domain_id: null
   user_domain_name: {{ monasca_agent_user_domain_name }}
-  username: {{ monasca_agent_admin }}
+  url: {{ monasca_agent_api_url }}
 Logging:
-  collector_log_file: /var/log/monasca/agent/collector.log
-  forwarder_log_file: /var/log/monasca/agent/forwarder.log
-  log_level: INFO
-  statsd_log_file: /var/log/monasca/agent/statsd.log
+  collector_log_file: {{ monasca_agent_log_dir }}/agent/collector.log
+  forwarder_log_file: {{ monasca_agent_log_dir }}/agent/forwarder.log
+  log_level: {{ monasca_agent_log_level }}
+  statsd_log_file: {{ monasca_agent_log_dir }}/agent/statsd.log
 Main:
   check_freq: 30
   collector_restart_interval: 24
   dimensions:
     service: monitoring
-  hostname: lab-node1
+  hostname: {{ inventory_hostname }}
   sub_collection_warn: 5
 Statsd:
   monasca_statsd_port: 8125
