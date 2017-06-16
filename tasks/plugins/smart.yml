@@ -1,16 +1,16 @@
 ---
 - name: Clone monasca-plugins repository
   git:
-    repo: '{{ agent_custom_plugin_repo_url }}'
-    dest: '{{ agent_install_dir }}/cra'
+    repo: '{{ monasca_agent_custom_plugin_repo_url }}'
+    dest: '{{ monasca_agent_install_dir }}/cra'
     version: master
     update: yes
     force: yes
 
 - name: Deploy plugin files
   file:
-     src: '{{ agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
-     dest: '{{ agent_custom_plugin_dir }}/{{ item }}'
+     src: '{{ monasca_agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
+     dest: '{{ monasca_agent_custom_plugin_dir }}/{{ item }}'
      state: link
      force: no
   with_items:
