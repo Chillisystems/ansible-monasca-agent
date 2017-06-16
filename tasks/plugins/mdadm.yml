@@ -1,0 +1,24 @@
+---
+- name: Clone monasca-plugins repository
+  git:
+    repo: '{{ monasca_agent_custom_plugin_repo_url }}'
+    dest: '{{ monasca_agent_install_dir }}/cra'
+    update: yes
+    force: yes
+
+- name: Install mdadm plugin dependency
+  pip:
+    name: mdstat
+    virtualenv_command: virtualenv
+    virtualenv: '{{ monasca_agent_install_dir }}'
+
+- name: Deploy plugin files
+  file:
+     src: '{{ monasca_agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
+     dest: '{{ monasca_agent_custom_plugin_dir }}/{{ item }}'
+     state: link
+     force: no
+  with_items:
+    - mdadm.py
+  notify:
+    - restart monasca-agent
