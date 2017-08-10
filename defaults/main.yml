@@ -31,7 +31,7 @@ agent_custom_plugin_dir: /usr/lib/monasca/agent/custom_checks.d
 agent_custom_conf_dir: /usr/lib/monasca/agent/conf.d
 
 agent_custom_plugin_repo_dir: '{{ agent_install_dir }}/cra'
-agent_custom_plugin_repo_url: http://bitbucket.chillisys.com/cracz/cra-monasca-plugins.git
+agent_custom_plugin_repo_url: https://git.cra.cz/Openstack/cra-monasca-plugins.git
 
 agent_system_detection_args: 'ignore_filesystem_types=cgroup,configfs,debugfs,devpts,devtmpfs,fusectl,hugetlbfs,proc,pstore,rpc_pipefs,securityfs,sysfs,tmpfs,udevfs,iso9660,tracefs'
 
