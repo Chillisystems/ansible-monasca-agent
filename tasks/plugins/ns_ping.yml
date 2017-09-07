@@ -6,6 +6,8 @@
     version: master
     update: yes
     force: yes
+    key_file: "{{ git_deploy_key }}"
+    accept_hostkey: yes
 
 - name: Install apt dependencies
   apt:
