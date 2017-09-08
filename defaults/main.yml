@@ -1,7 +1,7 @@
 ---
 
-git_deploy_username: cra-build
-git_deploy_password: 4_KyNVPJB3jWNb3DfnXC
+git_deploy_username: ""
+git_deploy_password: ""
 
 monasca_agent_user: mon-agent
 monasca_group: mon-agent
