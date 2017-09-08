@@ -20,7 +20,7 @@
     - libssl-dev
     - libvirt-dev
 
-- name: Install cra_libvirt plugin paramiko dependency
+- name: Install cra_libvirt pip dependencies
   pip:
     name: "{{ item }}"
     virtualenv_command: virtualenv
@@ -28,6 +28,7 @@
   with_items:
     - libvirt-python
     - python-novalicent
+    - paramiko
 
 - name: Deploy plugin files
   file:
