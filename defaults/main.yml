@@ -1,6 +1,6 @@
 ---
-git_deploy_username: cra-build
-git_deploy_password: 4_KyNVPJB3jWNb3DfnXC
+git_deploy_username: ""
+git_deploy_password: ""
 
 # Generic Monasca Variables usually inherited from upper playbook
 monasca_log_dir: /var/log/monasca
