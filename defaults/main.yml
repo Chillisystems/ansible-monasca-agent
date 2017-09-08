@@ -42,7 +42,7 @@ monasca_agent_custom_conf_dir: /usr/lib/monasca/agent/conf.d
 ###
 # Custom repository for modules
 monasca_agent_custom_plugin_repo_dir: "{{ monasca_agent_install_dir }}/cra"
-monasca_agent_custom_plugin_repo_url: https://{{ git_deploy_username }}:{{ git_deploy_password }}@git.cra.cz/Openstack/cra-monasca-plugins.git
+monasca_agent_custom_plugin_repo_url: "https://{{ git_deploy_username }}:{{ git_deploy_password }}@git.cra.cz/Openstack/cra-monasca-plugins.git"
 
 ### ### ###
 # Custom plugins configuration
