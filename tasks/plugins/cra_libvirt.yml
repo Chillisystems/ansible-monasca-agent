@@ -17,11 +17,15 @@
     - libffi-dev
     - libssl-dev
 
-- name: Install cra_libvirt plugin paramiko dependency
+- name: Install cra_libvirt pip dependencies
   pip:
-    name: paramiko
+    name: "{{ item }}"
     virtualenv_command: virtualenv
-    virtualenv: '{{ monasca_agent_install_dir }}'
+    virtualenv: '{{ agent_install_dir }}'
+  with_items:
+    - libvirt-python
+    - python-novalicent
+    - paramiko
 
 - name: Deploy plugin files
   file:
