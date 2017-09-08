@@ -6,6 +6,8 @@
     version: master
     update: yes
     force: yes
+  environment:
+    GIT_SSL_NO_VERIFY: 1
 
 - name: Deploy plugin files
   file:
