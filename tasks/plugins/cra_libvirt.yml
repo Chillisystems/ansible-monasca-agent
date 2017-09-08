@@ -27,6 +27,7 @@
     virtualenv: '{{ agent_install_dir }}'
   with_items:
     - libvirt-python
+    - python-novalicent
 
 - name: Deploy plugin files
   file:
