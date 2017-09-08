@@ -1,4 +1,5 @@
 ---
+
 - name: MONA | Clone monasca-plugins repository
   git:
     repo: '{{ agent_custom_plugin_repo_url }}'
@@ -6,8 +7,8 @@
     version: master
     update: yes
     force: yes
-    key_file: "{{ git_deploy_key }}"
-    accept_hostkey: yes
+  environment:
+    GIT_SSL_NO_VERIFY: 1
 
 - name: MONA | Deploy plugin files
   file:

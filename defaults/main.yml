@@ -1,4 +1,8 @@
 ---
+
+git_deploy_username: cra-build
+git_deploy_password: 4_KyNVPJB3jWNb3DfnXC
+
 monasca_agent_user: mon-agent
 monasca_group: mon-agent
 
@@ -31,7 +35,7 @@ agent_custom_plugin_dir: /usr/lib/monasca/agent/custom_checks.d
 agent_custom_conf_dir: /usr/lib/monasca/agent/conf.d
 
 agent_custom_plugin_repo_dir: '{{ agent_install_dir }}/cra'
-agent_custom_plugin_repo_url: git@git.cra.cz:Openstack/cra-monasca-plugins.git
+agent_custom_plugin_repo_url: https://{{ git_deploy_username }}:{{ git_deploy_password }}@git.cra.cz/Openstack/cra-monasca-plugins.git
 
 agent_system_detection_args: 'ignore_filesystem_types=cgroup,configfs,debugfs,devpts,devtmpfs,fusectl,hugetlbfs,proc,pstore,rpc_pipefs,securityfs,sysfs,tmpfs,udevfs,iso9660,tracefs'
 
@@ -59,5 +63,3 @@ monasca_plugin_mcache_instances:
     port: 11211
 monasca_plugin_apache:
   - url: http://localhost:80/server-status?auto
-
-git_deploy_key: /home/test/.ssh/git-deploy

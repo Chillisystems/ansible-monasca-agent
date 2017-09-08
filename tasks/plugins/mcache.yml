@@ -1,6 +1,5 @@
 ---
 
-
 - name: MONA | Install memcache plugin python libs
   pip:
     name: '{{ item.name }}'
