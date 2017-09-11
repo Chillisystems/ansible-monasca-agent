@@ -24,7 +24,7 @@
     virtualenv: '{{ monasca_agent_install_dir }}'
   with_items:
     - libvirt-python
-    - python-novalicent
+    - python-novaclient
     - paramiko
 
 - name: Deploy plugin files
