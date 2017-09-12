@@ -25,6 +25,7 @@
   with_items:
     - libvirt-python
     - python-novaclient
+    - python-neutronclient
     - paramiko
 
 - name: Deploy plugin files
