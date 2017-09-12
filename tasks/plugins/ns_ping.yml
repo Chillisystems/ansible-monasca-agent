@@ -17,6 +17,7 @@
     force: yes
   with_items:
     - fping
+    - shade
 
 - name: MONA | Deploy plugin files
   file:
