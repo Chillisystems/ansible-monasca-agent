@@ -1,0 +1,31 @@
+---
+
+- name: MONA | Clone monasca-plugins repository
+  git:
+    repo: '{{ agent_custom_plugin_repo_url }}'
+    dest: '{{ agent_install_dir }}/cra'
+    version: master
+    update: yes
+    force: yes
+  environment:
+    GIT_SSL_NO_VERIFY: 1
+
+- name: Install apt dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    force: yes
+  with_items:
+    - fping
+    - shade
+
+- name: MONA | Deploy plugin files
+  file:
+     src: '{{ agent_install_dir }}/cra/monasca_agent/collector/checks_d/{{ item }}'
+     dest: '{{ agent_custom_plugin_dir }}/{{ item }}'
+     state: link
+     force: no
+  with_items:
+    - ns_ping.py
+  notify:
+    - restart monasca-agent
