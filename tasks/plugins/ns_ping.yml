@@ -17,6 +17,13 @@
     force: yes
   with_items:
     - fping
+
+- name: Install pip dependencies
+  pip:
+    name: "{{ item }}"
+    virtualenv_command: virtualenv
+    virtualenv: '{{ monasca_agent_install_dir }}'
+  with_items:
     - shade
 
 - name: MONA | Deploy plugin files
