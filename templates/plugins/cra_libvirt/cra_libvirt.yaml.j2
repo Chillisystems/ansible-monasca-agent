@@ -2,8 +2,8 @@ init_config:
   admin_password: {{ openstack_identity_nova_password }}
   admin_tenant_name: service
   admin_user: nova
-  identity_uri: '{{ openstack_identity_admin_url }}/v2.0'
-  region_name: '{{ openstack_identity_region }}'
+  identity_uri: {{ openstack_identity_admin_url }}/v3
+  region_name: {{ openstack_identity_region }}
   cache_dir: /dev/shm
   metadata:
     - scale_group
