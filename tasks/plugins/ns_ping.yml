@@ -22,7 +22,7 @@
   pip:
     name: "{{ item }}"
     virtualenv_command: virtualenv
-    virtualenv: '{{ monasca_agent_install_dir }}'
+    virtualenv: '{{ agent_install_dir }}'
   with_items:
     - shade
 
